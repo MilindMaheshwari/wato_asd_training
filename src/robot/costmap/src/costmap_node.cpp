@@ -44,9 +44,10 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
   int inflation_radius = 1; // 1m around each obstacle is also marked as occupied, decreasing linearly
 
   int x_cells, y_cells;
-  float cost, angle, range, x, y, distance;
+  double angle, range, x, y, distance;
 
-  float OccupancyGrid[360][360] = {0}; // 2D array to represent the grid, initialized to 0 (free space)
+  int8_t cost;
+  int8_t OccupancyGrid[360][360] = {0}; // 2D array to represent the grid, initialized to 0 (free space)
 
   for(int i = 0; i < msg->ranges.size(); i++) {
 
@@ -66,6 +67,9 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
     // Bounds checking
     if (x_cells >= 0 && x_cells < 360 && y_cells >= 0 && y_cells < 360) {
       OccupancyGrid[x_cells][y_cells] = 100; // Mark as occupied
+
+      RCLCPP_INFO(this->get_logger(), "Lidar point at (%.2f, %.2f) -> Cell (%d, %d)", x, y, x_cells, y_cells);
+      RCLCPP_INFO(this->get_logger(), "Set OccupancyGrid[%d][%d] = %d", x_cells, y_cells, static_cast<int>(OccupancyGrid[x_cells][y_cells]));
     }
 
 
@@ -75,22 +79,41 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
         distance = sqrt(dx*dx + dy*dy) * RobotCentricGrid.info.resolution;
         if (distance <= inflation_radius) {
 
+          int new_x = x_cells + dx;
+          int new_y = y_cells + dy;
+          if (new_x < 0 || new_x >= 360 || new_y < 0 || new_y >= 360) {
+            continue; // Skip out-of-bounds cells
+          }
           cost = 100 * (1 -(distance / inflation_radius)); // Linear decrease from 100 to 0
-          
-          if (OccupancyGrid[x_cells + dx][y_cells + dy] <= cost) { // Don't update if already higher value
-            OccupancyGrid[x_cells + dx][y_cells + dy] = cost; 
+
+          if (OccupancyGrid[new_x][new_y] <= cost) { // Don't update if already higher value
+            OccupancyGrid[new_x][new_y] = cost;
           }
         }
       }
     }
   }
 
+  // RobotCentricGrid.data.clear();
+
+
+  // std::vector<int8_t> flattenedGrid = {};
+  // RobotCentricGrid.data.resize(360 * 360, 0);
+
+  RobotCentricGrid.header.stamp = this->now();
+  RobotCentricGrid.header.frame_id = "base_link";
+
+  RobotCentricGrid.data.resize(360 * 360);
+
   // Flatten 2D array to 1D array for OccupancyGrid message
   for(int i = 0; i < 360; i++) {
     for(int j = 0; j < 360; j++) {
-      RobotCentricGrid.data.push_back(OccupancyGrid[i][j]);
+      // flattenedGrid.push_back(static_cast<int8_t>(OccupancyGrid[i][j]));
+      RobotCentricGrid.data[i * 360 + j] = static_cast<int8_t>(OccupancyGrid[i][j]);
     }
   }
+
+  // RobotCentricGrid.data = flattenedGrid;
 
   // Publish the occupancy grid
   costmap_pub_->publish(RobotCentricGrid);
