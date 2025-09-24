@@ -1,0 +1,90 @@
+[0.000000] (-) TimerEvent: {}
+[0.001063] (-) JobUnselected: {'identifier': 'aggregator'}
+[0.003664] (-) JobUnselected: {'identifier': 'aggregator'}
+[0.003746] (-) JobUnselected: {'identifier': 'bringup_robot'}
+[0.003787] (-) JobUnselected: {'identifier': 'control'}
+[0.003821] (-) JobUnselected: {'identifier': 'gazebo'}
+[0.003852] (-) JobUnselected: {'identifier': 'map_memory'}
+[0.003882] (-) JobUnselected: {'identifier': 'odometry_spoof'}
+[0.003912] (-) JobUnselected: {'identifier': 'planner'}
+[0.003940] (-) JobUnselected: {'identifier': 'producer'}
+[0.003969] (-) JobUnselected: {'identifier': 'producer'}
+[0.003999] (-) JobUnselected: {'identifier': 'sample_msgs'}
+[0.004028] (-) JobUnselected: {'identifier': 'sample_msgs'}
+[0.004057] (-) JobUnselected: {'identifier': 'transformer'}
+[0.004085] (-) JobUnselected: {'identifier': 'transformer'}
+[0.004121] (costmap) JobQueued: {'identifier': 'costmap', 'dependencies': OrderedDict()}
+[0.004163] (costmap) JobStarted: {'identifier': 'costmap'}
+[0.067598] (costmap) JobProgress: {'identifier': 'costmap', 'progress': 'cmake'}
+[0.067750] (costmap) Command: {'cmd': ['/usr/bin/cmake', '/home/milind/wato_asd_training/src/robot/costmap', '-DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/costmap'], 'cwd': '/home/milind/wato_asd_training/build/costmap', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'milind', 'GIT_ASKPASS': '/home/milind/.vscode-server/bin/0f0d87fa9e96c856c5212fc86db137ac0d783365/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'HOME': '/home/milind', 'TERM_PROGRAM_VERSION': '1.104.1', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-1b593a7f-c98d-4b4b-9055-1f09231a9ba0.sock', 'VSCODE_GIT_ASKPASS_MAIN': '/home/milind/.vscode-server/bin/0f0d87fa9e96c856c5212fc86db137ac0d783365/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/milind/.vscode-server/bin/0f0d87fa9e96c856c5212fc86db137ac0d783365/node', 'VSCODE_PYTHON_AUTOACTIVATE_GUARD': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'LOGNAME': 'milind', 'NAME': 'Milind-Zenbook', 'WSL_INTEROP': '/run/WSL/10853_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'TERM': 'xterm-256color', 'PATH': '/home/milind/.vscode-server/bin/0f0d87fa9e96c856c5212fc86db137ac0d783365/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/milin/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/milin/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Users/milin/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/milin/AppData/Local/GitHubDesktop/bin:/snap/bin:/home/milind/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-098d416acd.sock', 'TERM_PROGRAM': 'vscode', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/milind/wato_asd_training/build/costmap', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'WSLENV': 'VSCODE_WSL_EXT_LOCATION/up'}), 'shell': False}
+[0.098464] (-) TimerEvent: {}
+[0.199248] (-) TimerEvent: {}
+[0.300186] (-) TimerEvent: {}
+[0.401030] (-) TimerEvent: {}
+[0.421877] (costmap) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.501292] (-) TimerEvent: {}
+[0.602081] (-) TimerEvent: {}
+[0.703109] (-) TimerEvent: {}
+[0.804140] (-) TimerEvent: {}
+[0.904900] (-) TimerEvent: {}
+[1.005835] (-) TimerEvent: {}
+[1.106808] (-) TimerEvent: {}
+[1.207756] (-) TimerEvent: {}
+[1.308567] (-) TimerEvent: {}
+[1.409630] (-) TimerEvent: {}
+[1.510917] (-) TimerEvent: {}
+[1.612114] (-) TimerEvent: {}
+[1.713187] (-) TimerEvent: {}
+[1.814252] (-) TimerEvent: {}
+[1.915393] (-) TimerEvent: {}
+[2.016264] (-) TimerEvent: {}
+[2.117666] (-) TimerEvent: {}
+[2.218798] (-) TimerEvent: {}
+[2.319999] (-) TimerEvent: {}
+[2.421034] (-) TimerEvent: {}
+[2.522210] (-) TimerEvent: {}
+[2.623511] (-) TimerEvent: {}
+[2.724516] (-) TimerEvent: {}
+[2.825196] (-) TimerEvent: {}
+[2.926123] (-) TimerEvent: {}
+[3.027305] (-) TimerEvent: {}
+[3.128233] (-) TimerEvent: {}
+[3.229020] (-) TimerEvent: {}
+[3.329757] (-) TimerEvent: {}
+[3.431611] (-) TimerEvent: {}
+[3.533524] (-) TimerEvent: {}
+[3.634482] (-) TimerEvent: {}
+[3.736217] (-) TimerEvent: {}
+[3.837901] (-) TimerEvent: {}
+[3.895333] (costmap) StdoutLine: {'line': b'-- The CXX compiler identification is unknown\n'}
+[3.938654] (-) TimerEvent: {}
+[4.040501] (-) TimerEvent: {}
+[4.142214] (-) TimerEvent: {}
+[4.244071] (-) TimerEvent: {}
+[4.345934] (-) TimerEvent: {}
+[4.447582] (-) TimerEvent: {}
+[4.530904] (costmap) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[4.547901] (-) TimerEvent: {}
+[4.648808] (-) TimerEvent: {}
+[4.749940] (-) TimerEvent: {}
+[4.851300] (-) TimerEvent: {}
+[4.952221] (-) TimerEvent: {}
+[5.025744] (costmap) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[5.046124] (costmap) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[5.047046] (costmap) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[5.048201] (costmap) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[5.049489] (costmap) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:2 (project):\n'}
+[5.049844] (costmap) StderrLine: {'line': b'  No CMAKE_CXX_COMPILER could be found.\n'}
+[5.049983] (costmap) StderrLine: {'line': b'\n'}
+[5.050099] (costmap) StderrLine: {'line': b'  Tell CMake where to find the compiler by setting either the environment\n'}
+[5.050210] (costmap) StderrLine: {'line': b'  variable "CXX" or the CMake cache entry CMAKE_CXX_COMPILER to the full path\n'}
+[5.050317] (costmap) StderrLine: {'line': b'  to the compiler, or to the compiler name if it is in the PATH.\n'}
+[5.050425] (costmap) StderrLine: {'line': b'\n'}
+[5.050636] (costmap) StderrLine: {'line': b'\x1b[0m\n'}
+[5.052384] (-) TimerEvent: {}
+[5.153516] (-) TimerEvent: {}
+[5.154306] (costmap) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[5.170862] (costmap) CommandEnded: {'returncode': 1}
+[5.254403] (-) TimerEvent: {}
+[5.259100] (costmap) JobEnded: {'identifier': 'costmap', 'rc': 1}
+[5.270719] (-) EventReactorShutdown: {}
