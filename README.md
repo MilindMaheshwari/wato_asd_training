@@ -1,4 +1,4 @@
-# WORK IN PROGRESS
+# WORK IN PROGRESS (fixing map memory node)
 
 # WATonomous ASD Admissions Assignment
 
