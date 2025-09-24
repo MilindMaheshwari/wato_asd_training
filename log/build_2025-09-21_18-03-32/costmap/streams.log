@@ -1,0 +1,18 @@
+[0.067s] Invoking command in '/home/milind/wato_asd_training/build/costmap': /usr/bin/cmake /home/milind/wato_asd_training/src/robot/costmap -DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/costmap
+[0.418s] -- The C compiler identification is GNU 13.3.0
+[3.892s] -- The CXX compiler identification is unknown
+[4.527s] -- Detecting C compiler ABI info
+[5.022s] -- Detecting C compiler ABI info - done
+[5.042s] -- Check for working C compiler: /usr/bin/cc - skipped
+[5.043s] -- Detecting C compile features
+[5.044s] -- Detecting C compile features - done
+[5.046s] [31mCMake Error at CMakeLists.txt:2 (project):
+[5.046s]   No CMAKE_CXX_COMPILER could be found.
+[5.046s] 
+[5.046s]   Tell CMake where to find the compiler by setting either the environment
+[5.046s]   variable "CXX" or the CMake cache entry CMAKE_CXX_COMPILER to the full path
+[5.046s]   to the compiler, or to the compiler name if it is in the PATH.
+[5.046s] 
+[5.047s] [0m
+[5.151s] -- Configuring incomplete, errors occurred!
+[5.168s] Invoked command in '/home/milind/wato_asd_training/build/costmap' returned '1': /usr/bin/cmake /home/milind/wato_asd_training/src/robot/costmap -DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/costmap
