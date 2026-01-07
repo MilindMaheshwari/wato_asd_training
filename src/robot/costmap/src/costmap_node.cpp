@@ -10,7 +10,6 @@ CostmapNode::CostmapNode() : Node("costmap"), costmap_(robot::CostmapCore(this->
   lidar_subscribtion_ = this->create_subscription<sensor_msgs::msg::LaserScan>(
     "/lidar", 10, std::bind(&CostmapNode::lidarCallback, this, std::placeholders::_1));
 
-  // string_pub_ = this->create_publisher<std_msgs::msg::String>("/test_topic", 10);
   // lidar_pub_ = this->create_publisher<std_msgs::msg::Float32>("/lidar_pub", 10);
   
   costmap_pub_ = this->create_publisher<nav_msgs::msg::OccupancyGrid>("/costmap", 10);
@@ -18,13 +17,7 @@ CostmapNode::CostmapNode() : Node("costmap"), costmap_(robot::CostmapCore(this->
   // timer_ = this->create_wall_timer(std::chrono::milliseconds(500), std::bind(&CostmapNode::publishMessage, this));
 } 
  
-// // Define the timer to publish a message every 500ms
-// void CostmapNode::publishMessage() {
-//   auto message = std_msgs::msg::String();
-//   message.data = "Hello, ROS 2!";
-//   RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
-//   string_pub_->publish(message);
-// }
+
 
 void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg) {
 
@@ -36,19 +29,24 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
   // Grid is 360 cells by 360 cells
   // Robot is at the center of the grid (cell 90, 90) 
 
+  // NEVERMIND ENTIRE FOXGLOVE GRID IS 30m x 30m
+
   nav_msgs::msg::OccupancyGrid RobotCentricGrid = nav_msgs::msg::OccupancyGrid();
   RobotCentricGrid.info.resolution = 0.1; // each cell is 0.1m x 0.1m
   RobotCentricGrid.info.width = 360; // 18m / 0.1m
   RobotCentricGrid.info.height = 360; // 18m / 0.1m
+  RobotCentricGrid.info.origin.position.x = 0; 
+  RobotCentricGrid.info.origin.position.y = 0; 
+
   RobotCentricGrid.header.stamp = this->now();
-  RobotCentricGrid.header.frame_id = "robot_base";
+  RobotCentricGrid.header.frame_id = "sim_world";
 
   int inflation_radius = 1; // 1m around each obstacle is also marked as occupied, decreasing linearly
 
   int x_cells, y_cells;
   float cost, angle, range, x, y, distance;
 
-  float OccupancyGrid[360][360] = {0}; // 2D array to represent the grid, initialized to 0 (free space)
+  float OccupancyGrid[RobotCentricGrid.info.width][RobotCentricGrid.info.height] = {0}; // 2D array to represent the grid, initialized to 0 (free space)
 
   for(int i = 0; i < msg->ranges.size(); i++) {
 
@@ -62,11 +60,11 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
     x = range * sin(angle);
     y = range * cos(angle);
 
-    x_cells = (x / RobotCentricGrid.info.resolution) + 180; // shift right (since 0,0 is bottom left)
-    y_cells = (y / RobotCentricGrid.info.resolution) + 180; // shift right (since 0,0 is bottom left)
+    x_cells = (x / RobotCentricGrid.info.resolution); // shift right (since 0,0 is bottom left)
+    y_cells = (y / RobotCentricGrid.info.resolution); // shift right (since 0,0 is bottom left)
 
     // Bounds checking
-    if (x_cells >= 0 && x_cells < 360 && y_cells >= 0 && y_cells < 360) {
+    if (x_cells >= 0 && x_cells < RobotCentricGrid.info.width && y_cells >= 0 && y_cells < RobotCentricGrid.info.height) {
       OccupancyGrid[x_cells][y_cells] = 100; // Mark as occupied
     }
 
@@ -77,7 +75,7 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
         int nx = x_cells + dx;
         int ny = y_cells + dy;
         // skip out-of-bounds neighbors
-        if (nx < 0 || nx >= 360 || ny < 0 || ny >= 360) {
+        if (nx < 0 || nx >= RobotCentricGrid.info.width || ny < 0 || ny >= RobotCentricGrid.info.height) {
           continue;
         }
         distance = sqrt(dx*dx + dy*dy) * RobotCentricGrid.info.resolution;
@@ -94,8 +92,8 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
   }
 
   // Flatten 2D array to 1D array for OccupancyGrid message
-  for(int i = 0; i < 360; i++) {
-    for(int j = 0; j < 360; j++) {
+  for(int i = 0; i < RobotCentricGrid.info.width; i++) {
+    for(int j = 0; j < RobotCentricGrid.info.height; j++) {
       RobotCentricGrid.data.push_back(OccupancyGrid[i][j]);
     }
   }
