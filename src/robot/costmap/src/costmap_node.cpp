@@ -40,6 +40,8 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
   RobotCentricGrid.info.resolution = 0.1; // each cell is 0.1m x 0.1m
   RobotCentricGrid.info.width = 360; // 18m / 0.1m
   RobotCentricGrid.info.height = 360; // 18m / 0.1m
+  RobotCentricGrid.header.stamp = this->now();
+  RobotCentricGrid.header.frame_id = "robot_base";
 
   int inflation_radius = 1; // 1m around each obstacle is also marked as occupied, decreasing linearly
 
@@ -72,13 +74,19 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
     // Inflate the obstacle
     for(int dx = -10; dx <= 10; dx++) { // 10 cells = 1m
       for(int dy = -10; dy <= 10; dy++) {
+        int nx = x_cells + dx;
+        int ny = y_cells + dy;
+        // skip out-of-bounds neighbors
+        if (nx < 0 || nx >= 360 || ny < 0 || ny >= 360) {
+          continue;
+        }
         distance = sqrt(dx*dx + dy*dy) * RobotCentricGrid.info.resolution;
         if (distance <= inflation_radius) {
 
           cost = 100 * (1 -(distance / inflation_radius)); // Linear decrease from 100 to 0
           
-          if (OccupancyGrid[x_cells + dx][y_cells + dy] <= cost) { // Don't update if already higher value
-            OccupancyGrid[x_cells + dx][y_cells + dy] = cost; 
+          if (OccupancyGrid[nx][ny] <= cost) { // Don't update if already higher value
+            OccupancyGrid[nx][ny] = cost; 
           }
         }
       }
