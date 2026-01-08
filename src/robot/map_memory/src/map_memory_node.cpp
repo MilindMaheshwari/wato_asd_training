@@ -24,11 +24,13 @@ void MapMemoryNode::odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg) {
 
   // Compute distance traveled
   double distance = std::sqrt(std::pow(curr_x - last_x, 2) + std::pow(curr_y - last_y, 2));
+
+  curr_yaw = tf2::getYaw(msg->pose.pose.orientation);
+
   if (distance >= distance_threshold) {
       last_x = curr_x;
       last_y = curr_y;
 
-      curr_yaw = tf2::getYaw(msg->pose.pose.orientation);
       RCLCPP_INFO(this->get_logger(), "Current Yaw: %f", curr_yaw);
 
       should_update_map_ = true;
@@ -89,6 +91,8 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
     }
   }
 
+  
+
   for(int i = 0; i < global_map_.info.width; i++) {
     for(int j = 0; j < global_map_.info.height; j++) {
       global_map_.data.push_back(global_grid[i][j]);
@@ -107,7 +111,7 @@ void MapMemoryNode::costmapCallback(const nav_msgs::msg::OccupancyGrid::SharedPt
   latest_costmap_ = *msg;
   costmap_updated_ = true;
 
-  last_yaw = tf2::getYaw(latest_odom_.pose.pose.orientation);
+  last_yaw = curr_yaw;
 
 }
 
