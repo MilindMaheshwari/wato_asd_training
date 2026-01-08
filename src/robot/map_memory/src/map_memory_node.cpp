@@ -1,31 +1,73 @@
 #include "map_memory_node.hpp"
 
 
-MapMemoryNode::MapMemoryNode() : Node("map_memory"), map_memory_(robot::MapMemoryCore(this->get_logger())) {
+MapMemoryNode::MapMemoryNode()
+  : Node("map_memory"),
+    map_memory_(robot::MapMemoryCore(this->get_logger())),
+    costmap_sub_(this, "/costmap"),
+    odom_sub_(this, "/odom/filtered")
+{
 
   // Initialize subscribers
-  costmap_sub_ = this->create_subscription<nav_msgs::msg::OccupancyGrid>(
-    "/costmap", 10, std::bind(&MapMemoryNode::costmapCallback, this, std::placeholders::_1));
-  odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
-    "/odom/filtered", 10, std::bind(&MapMemoryNode::odomCallback, this, std::placeholders::_1));
+  // costmap_sub_ = this->create_subscription<nav_msgs::msg::OccupancyGrid>(
+  //   "/costmap", 10, std::bind(&MapMemoryNode::costmapCallback, this, std::placeholders::_1));
+  // odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
+  //   "/odom/filtered", 10, std::bind(&MapMemoryNode::odomCallback, this, std::placeholders::_1));
 
+
+  sync_ = std::make_shared<message_filters::Synchronizer<SyncPolicy>>(SyncPolicy(10), costmap_sub_, odom_sub_);
+
+  sync_->registerCallback(std::bind(&MapMemoryNode::syncCallback, this, std::placeholders::_1, std::placeholders::_2));
   // Initialize publisher
   map_pub_ = this->create_publisher<nav_msgs::msg::OccupancyGrid>("/map", 10);
 
   // Initialize timer
   timer_ = this->create_wall_timer(std::chrono::seconds(1), std::bind(&MapMemoryNode::updateMap, this));
 
+  RCLCPP_INFO(this->get_logger(), "Map Memory Node Initialized");
+
 }
 
-void MapMemoryNode::odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg) {
+// void MapMemoryNode::odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg) {
 
-  double curr_x = msg->pose.pose.position.x;
-  double curr_y = msg->pose.pose.position.y;
+//   double curr_x = msg->pose.pose.position.x;
+//   double curr_y = msg->pose.pose.position.y;
+
+//   // Compute distance traveled
+//   double distance = std::sqrt(std::pow(curr_x - last_x, 2) + std::pow(curr_y - last_y, 2));
+
+//   curr_yaw = tf2::getYaw(msg->pose.pose.orientation);
+
+//   if (distance >= distance_threshold) {
+//       last_x = curr_x;
+//       last_y = curr_y;
+
+//       RCLCPP_INFO(this->get_logger(), "Current Yaw: %f", curr_yaw);
+
+//       should_update_map_ = true;
+//       latest_odom_ = *msg;
+
+
+
+//       RCLCPP_INFO(this->get_logger(), "Updated map with distance: %f", distance);
+//   }
+// }
+
+void MapMemoryNode::syncCallback(const nav_msgs::msg::OccupancyGrid::ConstSharedPtr costmap_msg, 
+                                 const nav_msgs::msg::Odometry::ConstSharedPtr odom_msg) {
+
+  double curr_x = odom_msg->pose.pose.position.x;
+  double curr_y = odom_msg->pose.pose.position.y;
 
   // Compute distance traveled
   double distance = std::sqrt(std::pow(curr_x - last_x, 2) + std::pow(curr_y - last_y, 2));
 
-  curr_yaw = tf2::getYaw(msg->pose.pose.orientation);
+  RCLCPP_INFO(this->get_logger(), "Synced Callback Called");
+  RCLCPP_INFO(this->get_logger(), "Current X: %f, Current Y: %f", curr_x, curr_y);
+  RCLCPP_INFO(this->get_logger(), "Last X: %f, Last Y: %f", last_x, last_y);
+  RCLCPP_INFO(this->get_logger(), "Distance: %f", distance);
+
+  curr_yaw = tf2::getYaw(odom_msg->pose.pose.orientation);
 
   if (distance >= distance_threshold) {
       last_x = curr_x;
@@ -34,10 +76,18 @@ void MapMemoryNode::odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg) {
       RCLCPP_INFO(this->get_logger(), "Current Yaw: %f", curr_yaw);
 
       should_update_map_ = true;
-      latest_odom_ = *msg;
+      latest_odom_ = *odom_msg;
+
+
 
       RCLCPP_INFO(this->get_logger(), "Updated map with distance: %f", distance);
   }
+
+  latest_costmap_ = *costmap_msg;
+  costmap_updated_ = true;
+  last_yaw = curr_yaw;
+
+  updateMap();
 
 
 }
@@ -64,6 +114,9 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
   global_map_.header.stamp = this->now();
   global_map_.header.frame_id = "sim_world";
 
+  double cos_yaw = cos(last_yaw);  //Slightly improves timing cuz apparenlty its expensive
+  double sin_yaw = sin(last_yaw); 
+
 
   RCLCPP_INFO(this->get_logger(), "Costmap Yaw: %f, Current Yaw: %f", last_yaw, curr_yaw);
 
@@ -77,8 +130,8 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
       local_x_from_center = j - latest_costmap_.info.width / 2;
       local_y_from_center = i - latest_costmap_.info.height / 2;
 
-      rotated_x = local_x_from_center * cos(last_yaw) - local_y_from_center * sin(last_yaw);
-      rotated_y = local_x_from_center * sin(last_yaw) + local_y_from_center * cos(last_yaw);
+      rotated_x = local_x_from_center * cos_yaw - local_y_from_center * sin_yaw;
+      rotated_y = local_x_from_center * sin_yaw + local_y_from_center * cos_yaw;
 
       global_x = global_center_x + rotated_x + local_x;
       global_y = global_center_y + rotated_y + local_y;
@@ -99,6 +152,7 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
     }
   }
 
+  RCLCPP_INFO(this->get_logger(), "Published global map with %d non zero cells", std::count_if(global_map_.data.begin(), global_map_.data.end(), [](int cell) { return cell != 0; }));
 
   map_pub_->publish(global_map_);
   should_update_map_ = false;
@@ -106,14 +160,14 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
 }
 
 
-void MapMemoryNode::costmapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg) {
+// void MapMemoryNode::costmapCallback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg) {
 
-  latest_costmap_ = *msg;
-  costmap_updated_ = true;
+//   latest_costmap_ = *msg;
+//   costmap_updated_ = true;
 
-  last_yaw = curr_yaw;
+//   last_yaw = curr_yaw;
 
-}
+// }
 
 
 int main(int argc, char ** argv)

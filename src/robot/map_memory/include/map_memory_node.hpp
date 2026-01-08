@@ -8,6 +8,9 @@
 #include "nav_msgs/msg/odometry.hpp"
 #include "tf2/utils.h"
 #include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
+#include "message_filters/subscriber.h"
+#include "message_filters/synchronizer.h"
+#include "message_filters/sync_policies/approximate_time.h"
 
 class MapMemoryNode : public rclcpp::Node {
   public:
@@ -19,14 +22,23 @@ class MapMemoryNode : public rclcpp::Node {
     void updateMap();
 
   private:
+    void syncCallback(const nav_msgs::msg::OccupancyGrid::ConstSharedPtr costmap_msg, 
+                      const nav_msgs::msg::Odometry::ConstSharedPtr odom_msg);
+
+
     robot::MapMemoryCore map_memory_;
 
-    rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr costmap_sub_;
-    rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
 
     rclcpp::Publisher<nav_msgs::msg::OccupancyGrid>::SharedPtr map_pub_;
     rclcpp::TimerBase::SharedPtr timer_;
 
+
+
+    message_filters::Subscriber<nav_msgs::msg::OccupancyGrid> costmap_sub_;
+    message_filters::Subscriber<nav_msgs::msg::Odometry> odom_sub_;
+
+    typedef message_filters::sync_policies::ApproximateTime<nav_msgs::msg::OccupancyGrid, nav_msgs::msg::Odometry> SyncPolicy;
+    std::shared_ptr<message_filters::Synchronizer<SyncPolicy>> sync_;
 
     nav_msgs::msg::OccupancyGrid latest_costmap_;
     nav_msgs::msg::Odometry latest_odom_;

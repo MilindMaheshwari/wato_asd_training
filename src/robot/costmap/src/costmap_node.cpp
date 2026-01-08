@@ -42,7 +42,7 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
   RobotCentricGrid.info.origin.position.x = -(RobotCentricGrid.info.width/2 * RobotCentricGrid.info.resolution);  // SHOULD BE -18
   RobotCentricGrid.info.origin.position.y = -(RobotCentricGrid.info.height/2 * RobotCentricGrid.info.resolution); // SHOULD = -18, not -18.000000 
 
-  RobotCentricGrid.header.stamp = this->now();
+  RobotCentricGrid.header.stamp = msg->header.stamp;
   RobotCentricGrid.header.frame_id = "base_link";
 
   int inflation_radius = 1; // 1m around each obstacle is also marked as occupied, decreasing linearly
