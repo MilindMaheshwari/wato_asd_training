@@ -6,6 +6,8 @@
 #include "map_memory_core.hpp"
 #include "nav_msgs/msg/occupancy_grid.hpp"
 #include "nav_msgs/msg/odometry.hpp"
+#include "tf2/utils.h"
+#include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
 
 class MapMemoryNode : public rclcpp::Node {
   public:
@@ -31,6 +33,7 @@ class MapMemoryNode : public rclcpp::Node {
     nav_msgs::msg::OccupancyGrid global_map_;
     double last_x = 0.0; 
     double last_y = 0.0;
+    double yaw = 0.0;
     const double distance_threshold = 1.0;
     bool costmap_updated_ = false;
     bool should_update_map_ = false; // Set to true at beginning to force first update

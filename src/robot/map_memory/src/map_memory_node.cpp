@@ -1,5 +1,6 @@
 #include "map_memory_node.hpp"
 
+
 MapMemoryNode::MapMemoryNode() : Node("map_memory"), map_memory_(robot::MapMemoryCore(this->get_logger())) {
 
   // Initialize subscribers
@@ -57,6 +58,9 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
   global_map_.header.stamp = this->now();
   global_map_.header.frame_id = "sim_world";
 
+  yaw = tf2::getYaw(latest_odom_.pose.pose.orientation);
+
+  RCLCPP_INFO(this->get_logger(), "Yaw: %f", yaw);
 
   local_x = (float)latest_odom_.pose.pose.position.x / latest_costmap_.info.resolution;
   local_y = (float)latest_odom_.pose.pose.position.y / latest_costmap_.info.resolution;
