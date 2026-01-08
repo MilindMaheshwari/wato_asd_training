@@ -35,8 +35,12 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
   RobotCentricGrid.info.resolution = 0.1; // each cell is 0.1m x 0.1m
   RobotCentricGrid.info.width = 360; // 18m / 0.1m
   RobotCentricGrid.info.height = 360; // 18m / 0.1m
-  RobotCentricGrid.info.origin.position.x = -18; 
-  RobotCentricGrid.info.origin.position.y = -18; 
+
+  // FOR WIDHT OF 360, origin.x = -18, origin.y = -18
+  
+
+  RobotCentricGrid.info.origin.position.x = -(RobotCentricGrid.info.width/2 * RobotCentricGrid.info.resolution);  // SHOULD BE -18
+  RobotCentricGrid.info.origin.position.y = -(RobotCentricGrid.info.height/2 * RobotCentricGrid.info.resolution); // SHOULD = -18, not -18.000000 
 
   RobotCentricGrid.header.stamp = this->now();
   RobotCentricGrid.header.frame_id = "base_link";
