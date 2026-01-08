@@ -72,7 +72,7 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
       OccupancyGrid[x_cells][y_cells] = 100; // Mark as occupied
     }
     else{
-      RCLCPP_INFO(this->get_logger(), "Out of bounds: x_cells: %d, y_cells: %d", x_cells, y_cells);
+      // RCLCPP_INFO(this->get_logger(), "Out of bounds: x_cells: %d, y_cells: %d", x_cells, y_cells);
       continue;
     }
 
