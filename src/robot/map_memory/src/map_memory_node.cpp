@@ -27,6 +27,7 @@ void MapMemoryNode::odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg) {
       last_x = curr_x;
       last_y = curr_y;
       should_update_map_ = true;
+      latest_odom_ = *msg;
 
       RCLCPP_INFO(this->get_logger(), "Updated map with distance: %f", distance);
   }
