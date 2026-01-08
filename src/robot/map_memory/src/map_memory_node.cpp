@@ -71,8 +71,8 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
       global_y = global_center_y + local_y_from_center + local_y;
 
       if (global_x >= 0 && global_x < global_width && global_y >= 0 && global_y < global_height) {
-        if (latest_costmap_.data[i * latest_costmap_.info.width + j] > global_grid[global_x][global_y]) {
-          global_grid[global_x][global_y] = latest_costmap_.data[i * latest_costmap_.info.width + j];
+        if (latest_costmap_.data[i * latest_costmap_.info.width + j] > global_grid[global_y][global_x]) {
+          global_grid[global_y][global_x] = latest_costmap_.data[i * latest_costmap_.info.width + j];
         }
       }
     }
