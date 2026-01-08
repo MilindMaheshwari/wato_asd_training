@@ -35,11 +35,11 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
   RobotCentricGrid.info.resolution = 0.1; // each cell is 0.1m x 0.1m
   RobotCentricGrid.info.width = 360; // 18m / 0.1m
   RobotCentricGrid.info.height = 360; // 18m / 0.1m
-  RobotCentricGrid.info.origin.position.x = 0; 
-  RobotCentricGrid.info.origin.position.y = 0; 
+  RobotCentricGrid.info.origin.position.x = -18; 
+  RobotCentricGrid.info.origin.position.y = -18; 
 
   RobotCentricGrid.header.stamp = this->now();
-  RobotCentricGrid.header.frame_id = "sim_world";
+  RobotCentricGrid.header.frame_id = "base_link";
 
   int inflation_radius = 1; // 1m around each obstacle is also marked as occupied, decreasing linearly
 
@@ -60,12 +60,16 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
     x = range * sin(angle);
     y = range * cos(angle);
 
-    x_cells = (x / RobotCentricGrid.info.resolution); // shift right (since 0,0 is bottom left)
-    y_cells = (y / RobotCentricGrid.info.resolution); // shift right (since 0,0 is bottom left)
+    x_cells = (x / RobotCentricGrid.info.resolution) + RobotCentricGrid.info.width/2; // shift right (since 0,0 is bottom left)
+    y_cells = (y / RobotCentricGrid.info.resolution) + RobotCentricGrid.info.height/2; // shift right (since 0,0 is bottom left)
 
     // Bounds checking
     if (x_cells >= 0 && x_cells < RobotCentricGrid.info.width && y_cells >= 0 && y_cells < RobotCentricGrid.info.height) {
       OccupancyGrid[x_cells][y_cells] = 100; // Mark as occupied
+    }
+    else{
+      RCLCPP_INFO(this->get_logger(), "Out of bounds: x_cells: %d, y_cells: %d", x_cells, y_cells);
+      continue;
     }
 
 
@@ -98,9 +102,9 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
     }
   }
 
+  // RCLCPP_INFO(this->get_logger(), "Published costmap with %d non zero cells", std::count_if(RobotCentricGrid.data.begin(), RobotCentricGrid.data.end(), [](int cell) { return cell != 0; }));
   // Publish the occupancy grid
   costmap_pub_->publish(RobotCentricGrid);
-
 }
  
 int main(int argc, char ** argv)
