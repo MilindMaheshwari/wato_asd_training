@@ -33,7 +33,13 @@ class MapMemoryNode : public rclcpp::Node {
     nav_msgs::msg::OccupancyGrid global_map_;
     double last_x = 0.0; 
     double last_y = 0.0;
-    double yaw = 0.0;
+    double curr_yaw = 0.0;
+    double last_yaw = 0.0;
+
+    
+    double rotated_x = 0.0;
+    double rotated_y = 0.0;
+
     const double distance_threshold = 1.0;
     bool costmap_updated_ = false;
     bool should_update_map_ = false; // Set to true at beginning to force first update

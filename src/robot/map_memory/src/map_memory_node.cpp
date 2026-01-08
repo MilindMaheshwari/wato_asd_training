@@ -27,6 +27,10 @@ void MapMemoryNode::odomCallback(const nav_msgs::msg::Odometry::SharedPtr msg) {
   if (distance >= distance_threshold) {
       last_x = curr_x;
       last_y = curr_y;
+
+      curr_yaw = tf2::getYaw(msg->pose.pose.orientation);
+      RCLCPP_INFO(this->get_logger(), "Current Yaw: %f", curr_yaw);
+
       should_update_map_ = true;
       latest_odom_ = *msg;
 
@@ -58,9 +62,8 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
   global_map_.header.stamp = this->now();
   global_map_.header.frame_id = "sim_world";
 
-  yaw = tf2::getYaw(latest_odom_.pose.pose.orientation);
 
-  RCLCPP_INFO(this->get_logger(), "Yaw: %f", yaw);
+  RCLCPP_INFO(this->get_logger(), "Costmap Yaw: %f, Current Yaw: %f", last_yaw, curr_yaw);
 
   local_x = (float)latest_odom_.pose.pose.position.x / latest_costmap_.info.resolution;
   local_y = (float)latest_odom_.pose.pose.position.y / latest_costmap_.info.resolution;
@@ -72,8 +75,11 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
       local_x_from_center = j - latest_costmap_.info.width / 2;
       local_y_from_center = i - latest_costmap_.info.height / 2;
 
-      global_x = global_center_x + local_x_from_center + local_x;
-      global_y = global_center_y + local_y_from_center + local_y;
+      rotated_x = local_x_from_center * cos(last_yaw) - local_y_from_center * sin(last_yaw);
+      rotated_y = local_x_from_center * sin(last_yaw) + local_y_from_center * cos(last_yaw);
+
+      global_x = global_center_x + rotated_x + local_x;
+      global_y = global_center_y + rotated_y + local_y;
 
       if (global_x >= 0 && global_x < global_width && global_y >= 0 && global_y < global_height) {
         if (latest_costmap_.data[i * latest_costmap_.info.width + j] > global_grid[global_y][global_x]) {
@@ -100,6 +106,8 @@ void MapMemoryNode::costmapCallback(const nav_msgs::msg::OccupancyGrid::SharedPt
 
   latest_costmap_ = *msg;
   costmap_updated_ = true;
+
+  last_yaw = tf2::getYaw(latest_odom_.pose.pose.orientation);
 
 }
 
