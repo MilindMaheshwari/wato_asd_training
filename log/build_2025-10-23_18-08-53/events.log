@@ -1,0 +1,136 @@
+[0.000000] (-) TimerEvent: {}
+[0.000549] (-) JobUnselected: {'identifier': 'aggregator'}
+[0.000645] (-) JobUnselected: {'identifier': 'aggregator'}
+[0.001154] (-) JobUnselected: {'identifier': 'bringup_robot'}
+[0.001200] (-) JobUnselected: {'identifier': 'control'}
+[0.001239] (-) JobUnselected: {'identifier': 'costmap'}
+[0.001277] (-) JobUnselected: {'identifier': 'gazebo'}
+[0.001314] (-) JobUnselected: {'identifier': 'odometry_spoof'}
+[0.001351] (-) JobUnselected: {'identifier': 'planner'}
+[0.001388] (-) JobUnselected: {'identifier': 'producer'}
+[0.001425] (-) JobUnselected: {'identifier': 'producer'}
+[0.001462] (-) JobUnselected: {'identifier': 'sample_msgs'}
+[0.001499] (-) JobUnselected: {'identifier': 'sample_msgs'}
+[0.001513] (-) JobUnselected: {'identifier': 'transformer'}
+[0.001529] (-) JobUnselected: {'identifier': 'transformer'}
+[0.001571] (map_memory) JobQueued: {'identifier': 'map_memory', 'dependencies': OrderedDict()}
+[0.001619] (map_memory) JobStarted: {'identifier': 'map_memory'}
+[0.053965] (map_memory) JobProgress: {'identifier': 'map_memory', 'progress': 'cmake'}
+[0.054467] (map_memory) Command: {'cmd': ['/usr/bin/cmake', '/home/milind/wato_asd_training/src/robot/map_memory', '-DCMAKE_BUILD_TYPE=Release', '-DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/map_memory'], 'cwd': '/home/milind/wato_asd_training/build/map_memory', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_CWD': '/mnt/c/Program Files/cursor', 'VSCODE_ESM_ENTRYPOINT': 'vs/workbench/api/node/extensionHostProcess', 'USER': 'milind', 'VSCODE_NLS_CONFIG': '{"userLocale":"en","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/home/milind/.cursor-server/bin/b753cece5c67c47cb5637199a5a5de2b7100c180/out/nls.messages.json","locale":"en","availableLanguages":{}}', 'VSCODE_HANDLES_UNCAUGHT_ERRORS': 'true', 'SHLVL': '1', 'HOME': '/home/milind', 'OLDPWD': '/home/milind/wato_asd_training', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-07d9e91b-ce2f-4208-904c-14866ad570bd.sock', 'NO_COLOR': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'VSCODE_L10N_BUNDLE_LOCATION': '', 'LOGNAME': 'milind', 'FORCE_COLOR': '0', 'NAME': 'Milind-Zenbook', 'WSL_INTEROP': '/run/WSL/609_interop', 'VSCODE_HANDLES_SIGPIPE': 'true', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'TERM': 'dumb', 'COMPOSER_NO_INTERACTION': '1', 'PATH': '/home/milind/.cursor-server/bin/b753cece5c67c47cb5637199a5a5de2b7100c180/bin/remote-cli:/home/milind/.cursor-server/bin/b753cece5c67c47cb5637199a5a5de2b7100c180/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/cursor/resources/app/bin:/mnt/c/Users/milin/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/milin/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Users/milin/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/milin/AppData/Local/GitHubDesktop/bin:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'CURSOR_AGENT': '1', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'LS_COLORS': '', 'SHELL': '/bin/bash', 'ELECTRON_RUN_AS_NODE': '1', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'PWD': '/home/milind/wato_asd_training/build/map_memory', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'WSLENV': ''}), 'shell': False}
+[0.099516] (-) TimerEvent: {}
+[0.199856] (-) TimerEvent: {}
+[0.300267] (-) TimerEvent: {}
+[0.400719] (-) TimerEvent: {}
+[0.501373] (-) TimerEvent: {}
+[0.601808] (-) TimerEvent: {}
+[0.676705] (map_memory) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.702129] (-) TimerEvent: {}
+[0.802682] (-) TimerEvent: {}
+[0.903366] (-) TimerEvent: {}
+[1.003844] (-) TimerEvent: {}
+[1.104568] (-) TimerEvent: {}
+[1.205281] (-) TimerEvent: {}
+[1.305755] (-) TimerEvent: {}
+[1.406301] (-) TimerEvent: {}
+[1.506792] (-) TimerEvent: {}
+[1.607479] (-) TimerEvent: {}
+[1.708237] (-) TimerEvent: {}
+[1.808911] (-) TimerEvent: {}
+[1.909418] (-) TimerEvent: {}
+[2.010079] (-) TimerEvent: {}
+[2.110555] (-) TimerEvent: {}
+[2.211055] (-) TimerEvent: {}
+[2.311546] (-) TimerEvent: {}
+[2.412060] (-) TimerEvent: {}
+[2.512798] (-) TimerEvent: {}
+[2.613265] (-) TimerEvent: {}
+[2.713708] (-) TimerEvent: {}
+[2.739128] (map_memory) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[2.813959] (-) TimerEvent: {}
+[2.914465] (-) TimerEvent: {}
+[3.014996] (-) TimerEvent: {}
+[3.115552] (-) TimerEvent: {}
+[3.216305] (-) TimerEvent: {}
+[3.316776] (-) TimerEvent: {}
+[3.417694] (-) TimerEvent: {}
+[3.518387] (-) TimerEvent: {}
+[3.619116] (-) TimerEvent: {}
+[3.719626] (-) TimerEvent: {}
+[3.820274] (-) TimerEvent: {}
+[3.920769] (-) TimerEvent: {}
+[4.021220] (-) TimerEvent: {}
+[4.121809] (-) TimerEvent: {}
+[4.222346] (-) TimerEvent: {}
+[4.322764] (-) TimerEvent: {}
+[4.423239] (-) TimerEvent: {}
+[4.518950] (map_memory) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[4.523571] (-) TimerEvent: {}
+[4.623981] (-) TimerEvent: {}
+[4.724602] (-) TimerEvent: {}
+[4.825237] (-) TimerEvent: {}
+[4.925847] (-) TimerEvent: {}
+[5.026460] (-) TimerEvent: {}
+[5.127030] (-) TimerEvent: {}
+[5.227494] (-) TimerEvent: {}
+[5.327982] (-) TimerEvent: {}
+[5.370139] (map_memory) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[5.381357] (map_memory) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[5.382350] (map_memory) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[5.383521] (map_memory) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[5.428113] (-) TimerEvent: {}
+[5.490571] (map_memory) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[5.528377] (-) TimerEvent: {}
+[5.628868] (-) TimerEvent: {}
+[5.729236] (-) TimerEvent: {}
+[5.829612] (-) TimerEvent: {}
+[5.929951] (-) TimerEvent: {}
+[5.991471] (map_memory) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[6.007816] (map_memory) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[6.008403] (map_memory) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[6.009024] (map_memory) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[6.030089] (-) TimerEvent: {}
+[6.130448] (-) TimerEvent: {}
+[6.230993] (-) TimerEvent: {}
+[6.331552] (-) TimerEvent: {}
+[6.432334] (-) TimerEvent: {}
+[6.532900] (-) TimerEvent: {}
+[6.633264] (-) TimerEvent: {}
+[6.733735] (-) TimerEvent: {}
+[6.834249] (-) TimerEvent: {}
+[6.934924] (-) TimerEvent: {}
+[7.035518] (-) TimerEvent: {}
+[7.135946] (-) TimerEvent: {}
+[7.236626] (-) TimerEvent: {}
+[7.337185] (-) TimerEvent: {}
+[7.437747] (-) TimerEvent: {}
+[7.538426] (-) TimerEvent: {}
+[7.639000] (-) TimerEvent: {}
+[7.739730] (-) TimerEvent: {}
+[7.840248] (-) TimerEvent: {}
+[7.940804] (-) TimerEvent: {}
+[8.041241] (-) TimerEvent: {}
+[8.141560] (-) TimerEvent: {}
+[8.241966] (-) TimerEvent: {}
+[8.342413] (-) TimerEvent: {}
+[8.370430] (map_memory) StderrLine: {'line': b'CMake Error at CMakeLists.txt:14 (find_package):\n'}
+[8.370938] (map_memory) StderrLine: {'line': b'  By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project\n'}
+[8.371122] (map_memory) StderrLine: {'line': b'  has asked CMake to find a package configuration file provided by\n'}
+[8.371250] (map_memory) StderrLine: {'line': b'  "ament_cmake", but CMake did not find one.\n'}
+[8.371414] (map_memory) StderrLine: {'line': b'\n'}
+[8.371570] (map_memory) StderrLine: {'line': b'  Could not find a package configuration file provided by "ament_cmake" with\n'}
+[8.371728] (map_memory) StderrLine: {'line': b'  any of the following names:\n'}
+[8.371875] (map_memory) StderrLine: {'line': b'\n'}
+[8.372029] (map_memory) StderrLine: {'line': b'    ament_cmakeConfig.cmake\n'}
+[8.372306] (map_memory) StderrLine: {'line': b'    ament_cmake-config.cmake\n'}
+[8.372511] (map_memory) StderrLine: {'line': b'\n'}
+[8.372668] (map_memory) StderrLine: {'line': b'  Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set\n'}
+[8.372825] (map_memory) StderrLine: {'line': b'  "ament_cmake_DIR" to a directory containing one of the above files.  If\n'}
+[8.373016] (map_memory) StderrLine: {'line': b'  "ament_cmake" provides a separate development package or SDK, be sure it\n'}
+[8.373219] (map_memory) StderrLine: {'line': b'  has been installed.\n'}
+[8.373406] (map_memory) StderrLine: {'line': b'\n'}
+[8.373596] (map_memory) StderrLine: {'line': b'\n'}
+[8.373817] (map_memory) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[8.383507] (map_memory) CommandEnded: {'returncode': 1}
+[8.443027] (-) TimerEvent: {}
+[8.480710] (map_memory) JobEnded: {'identifier': 'map_memory', 'rc': 1}
+[8.492003] (-) EventReactorShutdown: {}

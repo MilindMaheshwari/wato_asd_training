@@ -1,0 +1,2 @@
+Invoking command in '/home/milind/wato_asd_training/build/map_memory': /usr/bin/cmake /home/milind/wato_asd_training/src/robot/map_memory -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/map_memory
+Invoked command in '/home/milind/wato_asd_training/build/map_memory' returned '1': /usr/bin/cmake /home/milind/wato_asd_training/src/robot/map_memory -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/map_memory

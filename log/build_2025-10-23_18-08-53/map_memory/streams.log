@@ -1,0 +1,32 @@
+[0.055s] Invoking command in '/home/milind/wato_asd_training/build/map_memory': /usr/bin/cmake /home/milind/wato_asd_training/src/robot/map_memory -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/map_memory
+[0.676s] -- The C compiler identification is GNU 13.3.0
+[2.738s] -- The CXX compiler identification is GNU 13.3.0
+[4.518s] -- Detecting C compiler ABI info
+[5.369s] -- Detecting C compiler ABI info - done
+[5.380s] -- Check for working C compiler: /usr/bin/cc - skipped
+[5.381s] -- Detecting C compile features
+[5.382s] -- Detecting C compile features - done
+[5.489s] -- Detecting CXX compiler ABI info
+[5.990s] -- Detecting CXX compiler ABI info - done
+[6.007s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[6.007s] -- Detecting CXX compile features
+[6.007s] -- Detecting CXX compile features - done
+[8.369s] CMake Error at CMakeLists.txt:14 (find_package):
+[8.369s]   By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project
+[8.370s]   has asked CMake to find a package configuration file provided by
+[8.370s]   "ament_cmake", but CMake did not find one.
+[8.370s] 
+[8.370s]   Could not find a package configuration file provided by "ament_cmake" with
+[8.370s]   any of the following names:
+[8.370s] 
+[8.371s]     ament_cmakeConfig.cmake
+[8.371s]     ament_cmake-config.cmake
+[8.371s] 
+[8.371s]   Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set
+[8.371s]   "ament_cmake_DIR" to a directory containing one of the above files.  If
+[8.372s]   "ament_cmake" provides a separate development package or SDK, be sure it
+[8.372s]   has been installed.
+[8.372s] 
+[8.372s] 
+[8.372s] -- Configuring incomplete, errors occurred!
+[8.383s] Invoked command in '/home/milind/wato_asd_training/build/map_memory' returned '1': /usr/bin/cmake /home/milind/wato_asd_training/src/robot/map_memory -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/map_memory

@@ -1,0 +1,20 @@
+[0.035s] Invoking command in '/home/milind/wato_asd_training/build/costmap': /usr/bin/cmake /home/milind/wato_asd_training/src/robot/costmap -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/costmap
+[1.644s] [31mCMake Error at CMakeLists.txt:14 (find_package):
+[1.644s]   By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project
+[1.644s]   has asked CMake to find a package configuration file provided by
+[1.644s]   "ament_cmake", but CMake did not find one.
+[1.644s] 
+[1.645s]   Could not find a package configuration file provided by "ament_cmake" with
+[1.645s]   any of the following names:
+[1.645s] 
+[1.645s]     ament_cmakeConfig.cmake
+[1.645s]     ament_cmake-config.cmake
+[1.645s] 
+[1.645s]   Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set
+[1.645s]   "ament_cmake_DIR" to a directory containing one of the above files.  If
+[1.645s]   "ament_cmake" provides a separate development package or SDK, be sure it
+[1.645s]   has been installed.
+[1.645s] 
+[1.646s] [0m
+[1.646s] -- Configuring incomplete, errors occurred!
+[1.651s] Invoked command in '/home/milind/wato_asd_training/build/costmap' returned '1': /usr/bin/cmake /home/milind/wato_asd_training/src/robot/costmap -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/costmap

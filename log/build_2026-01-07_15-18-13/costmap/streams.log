@@ -1,0 +1,26 @@
+[0.047s] Invoking command in '/home/milind/wato_asd_training/build/costmap': /usr/bin/cmake /home/milind/wato_asd_training/src/robot/costmap -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/costmap
+[0.566s] -- The CXX compiler identification is GNU 13.3.0
+[1.363s] -- Detecting CXX compiler ABI info
+[1.734s] -- Detecting CXX compiler ABI info - done
+[1.748s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.749s] -- Detecting CXX compile features
+[1.750s] -- Detecting CXX compile features - done
+[3.117s] [31mCMake Error at CMakeLists.txt:14 (find_package):
+[3.118s]   By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project
+[3.118s]   has asked CMake to find a package configuration file provided by
+[3.118s]   "ament_cmake", but CMake did not find one.
+[3.118s] 
+[3.118s]   Could not find a package configuration file provided by "ament_cmake" with
+[3.118s]   any of the following names:
+[3.118s] 
+[3.118s]     ament_cmakeConfig.cmake
+[3.119s]     ament_cmake-config.cmake
+[3.119s] 
+[3.119s]   Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set
+[3.119s]   "ament_cmake_DIR" to a directory containing one of the above files.  If
+[3.119s]   "ament_cmake" provides a separate development package or SDK, be sure it
+[3.119s]   has been installed.
+[3.119s] 
+[3.119s] [0m
+[3.119s] -- Configuring incomplete, errors occurred!
+[3.125s] Invoked command in '/home/milind/wato_asd_training/build/costmap' returned '1': /usr/bin/cmake /home/milind/wato_asd_training/src/robot/costmap -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/costmap

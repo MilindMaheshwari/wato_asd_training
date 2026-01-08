@@ -1,0 +1,57 @@
+[0.000000] (-) TimerEvent: {}
+[0.001113] (-) JobUnselected: {'identifier': 'aggregator'}
+[0.001221] (-) JobUnselected: {'identifier': 'aggregator'}
+[0.001295] (-) JobUnselected: {'identifier': 'bringup_robot'}
+[0.001710] (-) JobUnselected: {'identifier': 'control'}
+[0.002216] (-) JobUnselected: {'identifier': 'gazebo'}
+[0.002751] (-) JobUnselected: {'identifier': 'map_memory'}
+[0.004460] (-) JobUnselected: {'identifier': 'odometry_spoof'}
+[0.005309] (-) JobUnselected: {'identifier': 'planner'}
+[0.005875] (-) JobUnselected: {'identifier': 'producer'}
+[0.005955] (-) JobUnselected: {'identifier': 'producer'}
+[0.006007] (-) JobUnselected: {'identifier': 'sample_msgs'}
+[0.006060] (-) JobUnselected: {'identifier': 'sample_msgs'}
+[0.006093] (-) JobUnselected: {'identifier': 'transformer'}
+[0.006148] (-) JobUnselected: {'identifier': 'transformer'}
+[0.006188] (costmap) JobQueued: {'identifier': 'costmap', 'dependencies': OrderedDict()}
+[0.006563] (costmap) JobStarted: {'identifier': 'costmap'}
+[0.034433] (costmap) JobProgress: {'identifier': 'costmap', 'progress': 'cmake'}
+[0.035735] (costmap) Command: {'cmd': ['/usr/bin/cmake', '/home/milind/wato_asd_training/src/robot/costmap', '-DCMAKE_BUILD_TYPE=Release', '-DCMAKE_INSTALL_PREFIX=/home/milind/wato_asd_training/install/costmap'], 'cwd': '/home/milind/wato_asd_training/build/costmap', 'env': OrderedDict({'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'milind', 'GIT_ASKPASS': '/home/milind/.cursor-server/bin/60d42bed27e5775c43ec0428d8c653c49e58e260/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'HOME': '/home/milind', 'OLDPWD': '/home/milind/.cursor-server/bin/60d42bed27e5775c43ec0428d8c653c49e58e260', 'TERM_PROGRAM_VERSION': '2.1.39', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-36b10808-c6ff-4c5a-bb79-9deb6939c712.sock', 'VSCODE_GIT_ASKPASS_MAIN': '/home/milind/.cursor-server/bin/60d42bed27e5775c43ec0428d8c653c49e58e260/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/milind/.cursor-server/bin/60d42bed27e5775c43ec0428d8c653c49e58e260/node', 'PYDEVD_DISABLE_FILE_VALIDATION': '1', 'BUNDLED_DEBUGPY_PATH': '/home/milind/.cursor-server/extensions/ms-python.debugpy-2025.10.0-linux-x64/bundled/libs/debugpy', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'LOGNAME': 'milind', 'NAME': 'Milind-Zenbook', 'WSL_INTEROP': '/run/WSL/634_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'TERM': 'xterm-256color', 'PATH': '/home/milind/.cursor-server/bin/60d42bed27e5775c43ec0428d8c653c49e58e260/bin/remote-cli:/home/milind/.cursor-server/bin/60d42bed27e5775c43ec0428d8c653c49e58e260/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/cursor/resources/app/bin:/mnt/c/Users/milin/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/milin/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Users/milin/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/milin/AppData/Local/GitHubDesktop/bin:/mnt/c/texlive/2025/bin/windows:/mnt/c/Program Files/Processing/:/snap/bin:/home/milind/.cursor-server/extensions/ms-python.debugpy-2025.10.0-linux-x64/bundled/scripts/noConfigScripts', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS': '/home/milind/.cursor-server/extensions/ms-python.debugpy-2025.10.0-linux-x64/.noConfigDebugAdapterEndpoints/endpoint-0a7de3293d90c7b3.txt', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-f66854ed42.sock', 'TERM_PROGRAM': 'vscode', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/milind/wato_asd_training/build/costmap', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'WSLENV': ''}), 'shell': False}
+[0.099476] (-) TimerEvent: {}
+[0.200650] (-) TimerEvent: {}
+[0.301313] (-) TimerEvent: {}
+[0.401815] (-) TimerEvent: {}
+[0.502331] (-) TimerEvent: {}
+[0.602846] (-) TimerEvent: {}
+[0.703566] (-) TimerEvent: {}
+[0.804028] (-) TimerEvent: {}
+[0.904493] (-) TimerEvent: {}
+[1.005011] (-) TimerEvent: {}
+[1.105742] (-) TimerEvent: {}
+[1.206364] (-) TimerEvent: {}
+[1.307064] (-) TimerEvent: {}
+[1.407749] (-) TimerEvent: {}
+[1.508463] (-) TimerEvent: {}
+[1.608988] (-) TimerEvent: {}
+[1.709507] (-) TimerEvent: {}
+[1.723059] (costmap) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:14 (find_package):\n'}
+[1.723440] (costmap) StderrLine: {'line': b'  By not providing "Findament_cmake.cmake" in CMAKE_MODULE_PATH this project\n'}
+[1.723610] (costmap) StderrLine: {'line': b'  has asked CMake to find a package configuration file provided by\n'}
+[1.723765] (costmap) StderrLine: {'line': b'  "ament_cmake", but CMake did not find one.\n'}
+[1.723923] (costmap) StderrLine: {'line': b'\n'}
+[1.724288] (costmap) StderrLine: {'line': b'  Could not find a package configuration file provided by "ament_cmake" with\n'}
+[1.724538] (costmap) StderrLine: {'line': b'  any of the following names:\n'}
+[1.724665] (costmap) StderrLine: {'line': b'\n'}
+[1.724776] (costmap) StderrLine: {'line': b'    ament_cmakeConfig.cmake\n'}
+[1.724884] (costmap) StderrLine: {'line': b'    ament_cmake-config.cmake\n'}
+[1.724994] (costmap) StderrLine: {'line': b'\n'}
+[1.725099] (costmap) StderrLine: {'line': b'  Add the installation prefix of "ament_cmake" to CMAKE_PREFIX_PATH or set\n'}
+[1.725204] (costmap) StderrLine: {'line': b'  "ament_cmake_DIR" to a directory containing one of the above files.  If\n'}
+[1.725310] (costmap) StderrLine: {'line': b'  "ament_cmake" provides a separate development package or SDK, be sure it\n'}
+[1.725416] (costmap) StderrLine: {'line': b'  has been installed.\n'}
+[1.725520] (costmap) StderrLine: {'line': b'\n'}
+[1.725624] (costmap) StderrLine: {'line': b'\x1b[0m\n'}
+[1.725728] (costmap) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[1.731982] (costmap) CommandEnded: {'returncode': 1}
+[1.776936] (costmap) JobEnded: {'identifier': 'costmap', 'rc': 1}
+[1.787875] (-) EventReactorShutdown: {}
