@@ -1,0 +1,7 @@
+source /opt/watonomous/setup.bash
+source install/setup.bash
+
+
+colcon build --packages-select
+ros2 launch bringup_robot robot.launch.py
+
