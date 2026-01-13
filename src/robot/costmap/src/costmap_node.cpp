@@ -50,8 +50,14 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
   int x_cells, y_cells;
   float cost, angle, range, x, y, distance;
 
-  float OccupancyGrid[RobotCentricGrid.info.width][RobotCentricGrid.info.height] = {0}; // 2D array to represent the grid, initialized to 0 (free space)
+  float OccupancyGrid[RobotCentricGrid.info.width][RobotCentricGrid.info.height] = {{-1}}; // 2D array to represent the grid, initialized to 0 (free space)
 
+  for(int i = 0; i < RobotCentricGrid.info.width; i++) {
+    for(int j = 0; j < RobotCentricGrid.info.height; j++) {
+      OccupancyGrid[i][j] = -1;
+    }
+  }
+  
   for(int i = 0; i < msg->ranges.size(); i++) {
 
     angle = msg->angle_min + i * msg->angle_increment;
@@ -82,7 +88,7 @@ void CostmapNode::lidarCallback(const sensor_msgs::msg::LaserScan::SharedPtr msg
       for(int dy = -10; dy <= 10; dy++) {
         int nx = x_cells + dx;
         int ny = y_cells + dy;
-        // skip out-of-bounds neighbors
+        // skip out-of-bounds neighborsj
         if (nx < 0 || nx >= RobotCentricGrid.info.width || ny < 0 || ny >= RobotCentricGrid.info.height) {
           continue;
         }

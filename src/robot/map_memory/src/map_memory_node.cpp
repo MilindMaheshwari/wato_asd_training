@@ -25,6 +25,13 @@ MapMemoryNode::MapMemoryNode()
   timer_ = this->create_wall_timer(std::chrono::seconds(1), std::bind(&MapMemoryNode::updateMap, this));
 
   RCLCPP_INFO(this->get_logger(), "Map Memory Node Initialized");
+  
+  for(int i = 0; i < 360; i++) {
+    for(int j = 0; j < 360; j++) {
+      global_grid[i][j] = -1;
+    }
+  }
+
 
 }
 
@@ -137,7 +144,10 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
       global_y = global_center_y + rotated_y + local_y;
 
       if (global_x >= 0 && global_x < global_width && global_y >= 0 && global_y < global_height) {
-        if (latest_costmap_.data[i * latest_costmap_.info.width + j] > global_grid[global_y][global_x]) {
+        if (latest_costmap_.data[i * latest_costmap_.info.width + j] == 0 || global_grid[global_y][global_x] == 0) {
+          global_grid[global_y][global_x] = 0;
+        } 
+        else if (latest_costmap_.data[i * latest_costmap_.info.width + j] > global_grid[global_y][global_x]) {
           global_grid[global_y][global_x] = latest_costmap_.data[i * latest_costmap_.info.width + j];
         }
       }

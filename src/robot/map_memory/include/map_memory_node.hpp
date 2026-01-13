@@ -11,6 +11,7 @@
 #include "message_filters/subscriber.h"
 #include "message_filters/synchronizer.h"
 #include "message_filters/sync_policies/approximate_time.h"
+#include "message_filters/sync_policies/exact_time.h"
 
 class MapMemoryNode : public rclcpp::Node {
   public:
@@ -37,7 +38,7 @@ class MapMemoryNode : public rclcpp::Node {
     message_filters::Subscriber<nav_msgs::msg::OccupancyGrid> costmap_sub_;
     message_filters::Subscriber<nav_msgs::msg::Odometry> odom_sub_;
 
-    typedef message_filters::sync_policies::ApproximateTime<nav_msgs::msg::OccupancyGrid, nav_msgs::msg::Odometry> SyncPolicy;
+    typedef message_filters::sync_policies::ExactTime<nav_msgs::msg::OccupancyGrid, nav_msgs::msg::Odometry> SyncPolicy;
     std::shared_ptr<message_filters::Synchronizer<SyncPolicy>> sync_;
 
     nav_msgs::msg::OccupancyGrid latest_costmap_;
@@ -63,6 +64,7 @@ class MapMemoryNode : public rclcpp::Node {
     int global_center_y = global_height / 2;
 
     int global_grid[360][360] = {};
+
 };
 
 #endif 
