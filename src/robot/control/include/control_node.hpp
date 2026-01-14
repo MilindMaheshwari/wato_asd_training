@@ -54,18 +54,25 @@ class ControlNode : public rclcpp::Node {
     }
  
     std::optional<geometry_msgs::msg::PoseStamped> findLookaheadPoint() {
+
         // TODO: Implement logic to find the lookahead point on the path
+        // If path has no poses, we can't find a lookahead point
+        if (!current_path_->poses.size()) {
+            RCLCPP_WARN(this->get_logger(), "Received empty path; skipping control update");
+            return std::nullopt;
+        }
 
         geometry_msgs::msg::Pose robot_pose = robot_odom_->pose.pose;
 
-        for(auto & pose_stamped : current_path_->poses) {
+        for(const auto & pose_stamped : current_path_->poses) {
             double distance = computeDistance(robot_pose.position, pose_stamped.pose.position);
             if (distance >= lookahead_distance_) {
                 return pose_stamped;
             }
         }
 
-        return current_path_->poses.back();  // Return goal if lookahead not found
+        // Return goal if lookahead not found
+        return current_path_->poses.back();
 
     }
  
@@ -73,6 +80,14 @@ class ControlNode : public rclcpp::Node {
         // TODO: Implement logic to compute velocity commands
 
         // Differential drive
+
+        if(computeDistance(robot_odom_->pose.pose.position, target.pose.position) < goal_tolerance_) {
+            // Stop if within goal tolerance
+            geometry_msgs::msg::Twist stop_cmd;
+            stop_cmd.linear.x = 0.0;
+            stop_cmd.angular.z = 0.0;
+            return stop_cmd;
+        }
         
         // angular velocity = linear_speed * 2y / (L^2) (y = horizontal offset to target, L = lookahead distance)
 

@@ -69,10 +69,10 @@ void MapMemoryNode::syncCallback(const nav_msgs::msg::OccupancyGrid::ConstShared
   // Compute distance traveled
   double distance = std::sqrt(std::pow(curr_x - last_x, 2) + std::pow(curr_y - last_y, 2));
 
-  RCLCPP_INFO(this->get_logger(), "Synced Callback Called");
-  RCLCPP_INFO(this->get_logger(), "Current X: %f, Current Y: %f", curr_x, curr_y);
-  RCLCPP_INFO(this->get_logger(), "Last X: %f, Last Y: %f", last_x, last_y);
-  RCLCPP_INFO(this->get_logger(), "Distance: %f", distance);
+  // RCLCPP_INFO(this->get_logger(), "Synced Callback Called");
+  // RCLCPP_INFO(this->get_logger(), "Current X: %f, Current Y: %f", curr_x, curr_y);
+  // RCLCPP_INFO(this->get_logger(), "Last X: %f, Last Y: %f", last_x, last_y);
+  // RCLCPP_INFO(this->get_logger(), "Distance: %f", distance);
 
   curr_yaw = tf2::getYaw(odom_msg->pose.pose.orientation);
 
@@ -87,7 +87,7 @@ void MapMemoryNode::syncCallback(const nav_msgs::msg::OccupancyGrid::ConstShared
 
 
 
-      RCLCPP_INFO(this->get_logger(), "Updated map with distance: %f", distance);
+      // RCLCPP_INFO(this->get_logger(), "Updated map with distance: %f", distance);
   }
 
   latest_costmap_ = *costmap_msg;
@@ -125,7 +125,7 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
   double sin_yaw = sin(last_yaw); 
 
 
-  RCLCPP_INFO(this->get_logger(), "Costmap Yaw: %f, Current Yaw: %f", last_yaw, curr_yaw);
+  // RCLCPP_INFO(this->get_logger(), "Costmap Yaw: %f, Current Yaw: %f", last_yaw, curr_yaw);
 
   local_x = (float)latest_odom_.pose.pose.position.x / latest_costmap_.info.resolution;
   local_y = (float)latest_odom_.pose.pose.position.y / latest_costmap_.info.resolution;
@@ -162,7 +162,7 @@ void MapMemoryNode::integrateCostmapIntoGlobalMap() {
     }
   }
 
-  RCLCPP_INFO(this->get_logger(), "Published global map with %d non zero cells", std::count_if(global_map_.data.begin(), global_map_.data.end(), [](int cell) { return cell != 0; }));
+  // RCLCPP_INFO(this->get_logger(), "Published global map with %d non zero cells", std::count_if(global_map_.data.begin(), global_map_.data.end(), [](int cell) { return cell != 0; }));
 
   map_pub_->publish(global_map_);
   should_update_map_ = false;

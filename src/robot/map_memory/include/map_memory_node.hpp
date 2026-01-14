@@ -38,7 +38,7 @@ class MapMemoryNode : public rclcpp::Node {
     message_filters::Subscriber<nav_msgs::msg::OccupancyGrid> costmap_sub_;
     message_filters::Subscriber<nav_msgs::msg::Odometry> odom_sub_;
 
-    typedef message_filters::sync_policies::ExactTime<nav_msgs::msg::OccupancyGrid, nav_msgs::msg::Odometry> SyncPolicy;
+    typedef message_filters::sync_policies::ApproximateTime<nav_msgs::msg::OccupancyGrid, nav_msgs::msg::Odometry> SyncPolicy;
     std::shared_ptr<message_filters::Synchronizer<SyncPolicy>> sync_;
 
     nav_msgs::msg::OccupancyGrid latest_costmap_;
