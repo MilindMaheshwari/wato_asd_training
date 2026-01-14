@@ -171,6 +171,10 @@ nav_msgs::msg::Path PlannerNode::planPath() {
     return path;
   }
 
+  // Override start cell to be free so planning can always escape from inflated/occupied
+  size_t start_flat_idx = start.y * current_map_.info.width + start.x;
+  obstacle_map[start_flat_idx] = 0;
+
   // Priority Queue for Open Set
   std::priority_queue<AStarNode, std::vector<AStarNode>, CompareF> open_set;
   

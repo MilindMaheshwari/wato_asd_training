@@ -54,8 +54,8 @@ class MapMemoryNode : public rclcpp::Node {
     double rotated_y = 0.0;
 
     const double distance_threshold = 1.0;
-    bool costmap_updated_ = false;
-    bool should_update_map_ = false; // Set to true at beginning to force first update
+    bool costmap_updated_ = true;
+    bool should_update_map_ = true; // Set to true at beginning to force first update
 
     int global_width = 360;
     int global_height = 360;

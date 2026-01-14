@@ -22,7 +22,7 @@ class ControlNode : public rclcpp::Node {
 
     double lookahead_distance_ =  1.0;
     double goal_tolerance_ = 0.1;
-    double linear_speed_ = 0.75;  // Constant forward speed 
+    double linear_speed_ = 1;  // Constant forward speed 
 
     rclcpp::Subscription<nav_msgs::msg::Path>::SharedPtr path_sub_;
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
