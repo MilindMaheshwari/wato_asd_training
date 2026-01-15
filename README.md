@@ -1,5 +1,7 @@
 # WATonomous ASD Admissions Assignment
 
+A ROS2 Project utilizing GazeboSim and FoxGlove to simulate a robot autonomously navigating through terrain, and avoiding obstacles using the A* pathfinding algorithm. Used Pure Pursuit to follow planned trajectories. 
+
 ## Prerequisite Installation
 These steps are to setup the monorepo to work on your own PC. We utilize docker to enable ease of reproducibility and deployability.
 
