@@ -2,7 +2,7 @@
 
 A ROS2 assignment utilizing GazeboSim and FoxGlove to simulate a robot autonomously navigating through terrain, and avoiding obstacles using the A* pathfinding algorithm. Used Pure Pursuit to follow planned trajectories. 
 
-Used for admission on to Waterloo WATonomous Design Team
+Used for admission to Waterloo WATonomous Design Team
 
 
 https://github.com/user-attachments/assets/d94596e3-8b4f-477c-95b9-01bb7476547b
