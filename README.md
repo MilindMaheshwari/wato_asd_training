@@ -4,7 +4,8 @@ A ROS2 assignment utilizing GazeboSim and FoxGlove to simulate a robot autonomou
 
 Used for admission on to Waterloo WATonomous Design Team
 
-[![](https://img.youtube.com/vi/y-ThEG-t04w/0.jpg)]([www.youtube.com](https://www.youtube.com/watch?v=y-ThEG-t04w))
+
+https://github.com/user-attachments/assets/d94596e3-8b4f-477c-95b9-01bb7476547b
 
 ## Prerequisite Installation
 These steps are to setup the monorepo to work on your own PC. We utilize docker to enable ease of reproducibility and deployability.
